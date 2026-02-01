@@ -24,6 +24,11 @@ A valid username was successfully identified based solely on response timing dif
 -  Authentication mechanisms leak sensitive information through timing
 -  Enables more effective brute-force and credential-based attacks
 
+## Tools
+- Burp Suite (Proxy)
+- Burp Suite Intruder (Timing attack)
+- Web Browser
+
 ## What I Learned
 - Identical error messages do not fully prevent information disclosure
 - Response timing is a critical side-channel in authentication systems
