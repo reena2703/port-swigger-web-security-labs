@@ -1,24 +1,30 @@
 # Username Enumeration via Response Timing
 
-This lab demonstrates how small differences in server response time can be used to enumerate valid usernames, even when error messages appear identical.
+## Lab Source
+PortSwigger Web Security Academy  
+Level: Practitioner  
+Category: Authentication
 
-Although the application attempts to prevent username enumeration by returning the same error message for all login failures, the backend processing time differs depending on whether the username exists. By carefully analyzing these timing differences, it is possible to identify valid usernames and then perform a successful login.
+## Overview
+This lab demonstrates how attackers can enumerate valid usernames by analyzing subtle differences in server response times during the login process.
+Even when error messages are identical, variations in response timing can reveal whether a username exists in the application.
+
+## What I Did
+- Intercepted login requests using Burp Suite
+- Sent multiple authentication attempts with different usernames
+- Measured and compared server response times
+- Identified timing delays that indicated valid usernames
+- Used the enumerated username for further authentication attacks
+
+## Result
+A valid username was successfully identified based solely on response timing differences.
+
+## Impact
+-  Usernames can be enumerated without visible error message differences
+-  Authentication mechanisms leak sensitive information through timing
+-  Enables more effective brute-force and credential-based attacks
 
 ## What I Learned
-- Username enumeration does not rely only on error messages
-- Response timing can leak sensitive information
-- Rate limiting and artificial delays can still be bypassed
-- Burp Suite Intruder is useful for detecting subtle timing differences
-
-## Skills Practiced
-- Login request analysis
-- Response time comparison
-- Using Burp Intruder for timing attacks
-- Identifying logic flaws in authentication mechanisms
-
-## Tools Used
-- Burp Suite
-- Burp Intruder
-
-## Lab Status
-Solved
+- Identical error messages do not fully prevent information disclosure
+- Response timing is a critical side-channel in authentication systems
+- Secure authentication requires consistent server-side processing
