@@ -24,6 +24,12 @@ Successfully logged into the victim’s account despite brute-force protection b
 - Unauthorized account access is possible
 - IP-based defenses alone are insufficient
 
+## Tools Used
+- Burp Suite (Proxy)
+- Burp Suite Intruder (Pitchfork attack)
+- Burp Suite Resource Pool
+- Web Browser
+  
 ## What I Learned
 - Authentication rate-limiting must be carefully implemented
 - Login counters should not reset across different users
