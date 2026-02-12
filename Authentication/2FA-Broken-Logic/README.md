@@ -4,7 +4,7 @@
 ## Lab Details
 Category: Server-Side Authentication (Multi-Factor Authentication)  
 Level: Practitioner  
-Status: Solved ✅  
+Status: Solved  
 
 ---
 
