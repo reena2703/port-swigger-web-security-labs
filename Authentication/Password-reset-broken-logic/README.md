@@ -4,7 +4,7 @@
 ## Lab Details
 Category: Server-Side Authentication (Password Reset)  
 Level: Apprentice  
-Status: Solved ✅  
+Status: Solved 
 
 ---
 
