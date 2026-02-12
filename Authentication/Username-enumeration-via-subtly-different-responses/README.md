@@ -125,7 +125,6 @@ I’m documenting this lab as:
 - Proof of attention to detail in security testing
 - Experience with real-world server-side authentication flaws
 - Preparation for interviews and security assessments
-```
 
 
  
