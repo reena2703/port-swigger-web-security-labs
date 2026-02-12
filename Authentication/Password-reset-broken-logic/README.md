@@ -119,7 +119,6 @@ I’m documenting this lab as:
 - A personal learning record
 - Proof of hands-on experience with server-side authentication flaws
 - A reference for interviews and future review
-```
 
  
 
