@@ -3,7 +3,7 @@
 ## Lab Details
 Category: Server-Side Authentication (Multi-factor Authentication)  
 Level: Apprentice  
-Status: Solved ✅  
+Status: Solved   
 
 ---
 
