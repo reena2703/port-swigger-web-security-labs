@@ -123,7 +123,7 @@ I’m documenting this lab as:
 - A personal learning reference
 - Proof of hands-on experience with authentication logic flaws
 - Preparation for interviews and real-world security testing
-```
+
 
  
 
