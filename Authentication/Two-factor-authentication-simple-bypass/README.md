@@ -108,6 +108,5 @@ I’m documenting this lab as:
 - A personal learning reference
 - Proof of hands-on experience with server-side authentication flaws
 - Preparation for interviews and real-world security assessments
-```
 
  
