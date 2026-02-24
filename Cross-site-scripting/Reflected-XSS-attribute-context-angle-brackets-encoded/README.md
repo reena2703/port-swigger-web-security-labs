@@ -1,4 +1,4 @@
-# Web Security Academy – Reflected XSS (Attribute Context)
+# Cross-Site Scripting (XSS)  – Reflected XSS (Attribute Context)
 
 ## Lab: Reflected XSS into Attribute with Angle Brackets HTML-Encoded
 
