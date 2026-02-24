@@ -55,89 +55,89 @@ onload="this.src+='<img src=x onerror=print()>'"></iframe
 
 ## Steps I Followed
 
-Inspected the home page JavaScript using browser DevTools
+- Inspected the home page JavaScript using browser DevTools
 
-Identified jQuery $() usage with location.hash
+- Identified jQuery $() usage with location.hash
 
-Opened the Exploit Server from the lab banner
+- Opened the Exploit Server from the lab banner
 
-Created a malicious iframe containing the XSS payload
+- Created a malicious iframe containing the XSS payload
 
-Stored the exploit and clicked View exploit
+- Stored the exploit and clicked View exploit
 
-Confirmed that print() executed in the browser
+- Confirmed that print() executed in the browser
 
-Clicked Deliver to victim
+- Clicked Deliver to victim
 
-The lab was successfully solved
+- The lab was successfully solved
 
 ---
 
 ## Why This Worked
 
-location.hash is fully user-controlled
+- location.hash is fully user-controlled
 
-jQuery $() treats crafted input as HTML
+- jQuery $() treats crafted input as HTML
 
-The hashchange event automatically triggers the vulnerable code
+- The hashchange event automatically triggers the vulnerable code
 
-No input validation or sanitization was applied
+- No input validation or sanitization was applied
 
 ---
 
 ## Impact
 
-Arbitrary JavaScript execution in the victim’s browser
+- Arbitrary JavaScript execution in the victim’s browser
 
-Client-side attacks without server-side interaction
+- Client-side attacks without server-side interaction
 
-DOM manipulation
+- DOM manipulation
 
-Phishing and UI-based attacks
+- Phishing and UI-based attacks
 
 ---
 
 ## Key Lessons Learned
 
-DOM XSS can occur without form inputs or server reflection
+- DOM XSS can occur without form inputs or server reflection
 
-jQuery selectors are dangerous with untrusted input
+- jQuery selectors are dangerous with untrusted input
 
-location.hash is a common and overlooked XSS source
+- location.hash is a common and overlooked XSS source
 
-Client-side code must be treated as untrusted
+- Client-side code must be treated as untrusted
 
-Exploit servers simulate real-world attack delivery
+- Exploit servers simulate real-world attack delivery
 
 ---
 
 ## Common Dangerous DOM Sinks
 
-Avoid using untrusted input with:
+- Avoid using untrusted input with:
 
-jQuery $() selector
+- jQuery $() selector
 
-innerHTML
+- innerHTML
 
-outerHTML
+- outerHTML
 
-document.write()
+- document.write()
 
-insertAdjacentHTML()
+- insertAdjacentHTML()
 
 ## Final Summary
 
-Vulnerability exists fully on the client side
+- Vulnerability exists fully on the client side
 
-Source: location.hash
+- Source: location.hash
 
-Sink: jQuery selector
+- Sink: jQuery selector
 
-Payload delivered via exploit server
+- Payload delivered via exploit server
 
-JavaScript executed using an HTML event handler
+- JavaScript executed using an HTML event handler
 
-High-impact DOM-based XSS vulnerability
+- High-impact DOM-based XSS vulnerability
 
 
  
