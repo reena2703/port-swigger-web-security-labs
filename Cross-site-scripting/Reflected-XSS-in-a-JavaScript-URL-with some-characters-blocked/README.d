@@ -1,4 +1,4 @@
-#Cross-Site Scripting (XSS) – Reflected XSS in a JavaScript URL with Character Restrictions
+# Cross-Site Scripting (XSS) – Reflected XSS in a JavaScript URL with Character Restrictions
 
 (**Web Security Academy**)
 
@@ -54,7 +54,7 @@ The challenge is to **execute `alert()`** while ensuring the number **`1337` app
 https://YOUR-LAB-ID.web-security-academy.net/post?postId=5&'},x=x=>{throw/**/onerror=alert,1337},toString=x,window+'',{x:'
 ```
 
->  **Note:**
+> ⚠️ **Note:**
 > The alert is only triggered after clicking **“Back to blog”** at the bottom of the page.
 
 ---
@@ -179,5 +179,3 @@ To prevent this class of vulnerability:
   * `toString` coercion
 * `alert(1337)` executed on user interaction
 * Demonstrates expert-level XSS filter bypass
-
- 
