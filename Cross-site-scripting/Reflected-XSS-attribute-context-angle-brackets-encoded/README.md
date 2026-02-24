@@ -1,113 +1,123 @@
-# Cross-Site Scripting (XSS)  – Reflected XSS (Attribute Context)
+# Cross-Site Scripting (XSS) – Reflected XSS in Attribute Context  
+(Web Security Academy)
+
+Reflected XSS occurs when **user input is immediately reflected** in the server’s HTTP response without proper sanitization or encoding.
+
+This lab focuses on **attribute-context XSS**, where angle brackets are HTML-encoded, but it’s still possible to inject JavaScript by breaking out of an HTML attribute.
+
+---
 
 ## Lab: Reflected XSS into Attribute with Angle Brackets HTML-Encoded
 
 **Category:** Cross-site scripting  
+**Type:** Reflected XSS  
 **Context:** HTML attribute  
 **Level:** Apprentice  
-**Status:** Solved   
+**Status:** Solved  
 
 ---
 
 ## What This Lab Is About
 
-This lab demonstrates a **reflected XSS vulnerability** where:
+This lab demonstrates a reflected XSS vulnerability where:
 
-- User input is reflected inside an **HTML attribute**
-- Angle brackets (`<` and `>`) are HTML-encoded
-- The application still allows attribute injection
-- JavaScript can be executed using event handlers
-
-This shows that encoding angle brackets alone is **not sufficient** to prevent XSS.
+- User input is reflected into an **HTML attribute**
+- Angle brackets (`< >`) are HTML-encoded
+- Quotes are **not properly handled**
+- An attacker can inject a new attribute with a JavaScript event handler
 
 ---
 
-## Vulnerable Context
+## Vulnerable Flow
 
-- User input is reflected inside a **quoted HTML attribute**
-- Example vulnerable pattern:
- 
+- **Source:** Search input
+- **Sink:** HTML attribute value
+
+The application reflects user input like this:
+
+```html
 <input value="USER_INPUT">
+````
 
-Even though < and > are encoded, the attribute itself can still be broken.
+Because the input is placed inside a **quoted attribute**, escaping the quote allows injection of a new attribute.
+
+---
+
+## Payload Used
+
+```html
+"onmouseover="alert(1)
+```
 
 ---
 
 ## Steps I Followed
 
-Entered a random alphanumeric string into the search box
+1. Entered a random alphanumeric string in the search box
+2. Intercepted the request using **Burp Suite**
+3. Sent the request to **Burp Repeater**
+4. Observed that the input was reflected inside a **quoted HTML attribute**
+5. Replaced the input with the payload:
 
-Intercepted the request using Burp Proxy
-
-Sent the request to Burp Repeater
-
-Observed that the input was reflected inside a quoted attribute
-
-Replaced the input with a payload that breaks out of the attribute
-
----
-
-## Payload Used
-"onmouseover="alert(1)
-
----
-
-## Why This Payload Works
-
-The leading " closes the existing attribute value
-
-A new attribute (onmouseover) is injected
-
-JavaScript is executed when the user hovers over the element
-
-No <script> tags are required
+   ```
+   "onmouseover="alert(1)
+   ```
+6. Sent the request and copied the generated URL
+7. Opened the URL in the browser
+8. Moved the mouse over the injected element
+9. `alert(1)` executed successfully
 
 ---
 
-## Verification
+## Why This Worked
 
-Right-clicked the page
-
-Selected Copy URL
-
-Opened the URL in the browser
-
-Hovered over the injected element
-
-alert(1) was triggered successfully
+* Angle brackets were encoded, but **quotes were not**
+* Escaping the quote allowed injection of a new attribute
+* Event handlers like `onmouseover` execute JavaScript
+* No proper context-aware encoding was applied
 
 ---
 
 ## Impact
 
-JavaScript execution in the victim’s browser
-
-Session hijacking
-
-Phishing attacks
-
-DOM manipulation
+* Arbitrary JavaScript execution
+* Session hijacking
+* Credential theft
+* DOM manipulation
+* Phishing attacks
 
 ---
 
 ## Key Lessons Learned
 
-Encoding < and > alone does not prevent XSS
+* Encoding `<` and `>` alone is **not sufficient**
+* Attribute contexts require **attribute-aware encoding**
+* Event handlers are powerful XSS vectors
+* Reflected XSS can still be exploited without `<script>` tags
+* Always consider **where** user input is placed in HTML
 
-Attribute contexts require context-aware encoding
+---
 
-Event handlers are a common XSS vector
+## Common Dangerous Attribute Contexts
 
-XSS payloads depend heavily on injection context
+Be careful when reflecting untrusted input into:
+
+* `value=""`
+* `href=""`
+* `src=""`
+* `data-*` attributes
+* Inline event handlers
 
 ---
 
 ## Final Summary
 
-Reflected XSS via attribute injection
+* Reflected XSS vulnerability
+* Context: HTML attribute
+* Angle brackets encoded, quotes not handled
+* Payload escapes attribute and injects event handler
+* JavaScript executed via `onmouseover`
+* Simple bypass with high real-world impact
+ 
 
-Context: Quoted HTML attribute
-
-Angle brackets encoded, but quotes were not
-
-Exploitation achieved using an event handler
+ 
