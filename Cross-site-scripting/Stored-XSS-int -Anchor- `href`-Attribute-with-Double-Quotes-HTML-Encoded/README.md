@@ -120,5 +120,4 @@ Use strict allowlists such as:
 * Payload executed when victim clicks the link
 * High-impact vulnerability with simple exploitation
  
-You’re building a **very solid security lab portfolio** 👏
-```
+ 
