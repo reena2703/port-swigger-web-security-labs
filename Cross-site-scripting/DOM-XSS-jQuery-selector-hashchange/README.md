@@ -1,4 +1,4 @@
-# Web Security Academy – DOM-Based XSS
+# Cross-Site Scripting (XSS)  – DOM-Based XSS
 ## Lab: DOM XSS in jQuery Selector Sink Using a hashchange Event
 
 **Category:** Cross-site scripting  
