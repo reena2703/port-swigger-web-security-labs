@@ -123,5 +123,4 @@ Avoid using untrusted input with:
 
  
 
-Just say the word 👌
-```
+ 
