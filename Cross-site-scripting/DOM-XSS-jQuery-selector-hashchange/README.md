@@ -43,12 +43,12 @@ The vulnerable JavaScript logic:
 
 The exploit was delivered using the **exploit server** with a malicious iframe:
 
-```html
+ 
 <iframe src="https://YOUR-LAB-ID.web-security-academy.net/#"
 onload="this.src+='<img src=x onerror=print()>'"></iframe>
-
-
-Steps I Followed
+ 
+ 
+## Steps I Followed
 
 Inspected the home page JavaScript using browser DevTools
 
@@ -66,7 +66,9 @@ Confirmed that print() was triggered in the browser
 
 Clicked Deliver to victim to complete the lab
 
-Why This Worked
+---
+
+## Why This Worked
 
 location.hash is fully attacker-controlled
 
@@ -76,7 +78,9 @@ The injected <img> tag executes JavaScript via the onerror event
 
 No sanitization or validation was applied to the hash value
 
-Impact
+---
+
+## Impact
 
 Arbitrary JavaScript execution in the victim’s browser
 
@@ -88,7 +92,9 @@ Client-side phishing attacks
 
 No server-side interaction required
 
-Key Lessons Learned
+---
+
+## Key Lessons Learned
 
 DOM XSS can be triggered via URL fragments (#)
 
@@ -100,7 +106,9 @@ Client-side vulnerabilities can still require victim interaction
 
 Exploit servers are often used to deliver DOM-based attacks
 
-Final Summary
+---
+
+## Final Summary
 
 DOM-based XSS via jQuery selector
 
