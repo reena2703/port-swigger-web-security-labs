@@ -1,4 +1,4 @@
-# Cross-Site Scripting (XSS) – Reflected XSS in a JavaScript URL with Character Restrictions
+#Cross-Site Scripting (XSS) – Reflected XSS in a JavaScript URL with Character Restrictions
 
 (**Web Security Academy**)
 
