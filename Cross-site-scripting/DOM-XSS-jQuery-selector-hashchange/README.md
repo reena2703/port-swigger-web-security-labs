@@ -1,12 +1,12 @@
-# Cross-Site Scripting (XSS) – DOM-Based XSS
+# Cross-Site Scripting (XSS) – DOM-Based XSS  
 (Web Security Academy)
 
-DOM-based XSS vulnerabilities occur entirely on the **client side**.  
-The server may return safe content, but insecure JavaScript logic in the browser allows attackers to execute malicious code.
+DOM-based XSS occurs entirely on the **client side**.  
+The server response itself is safe, but insecure JavaScript logic in the browser makes the application vulnerable.
 
 ---
 
-## Lab: DOM XSS in jQuery Selector Sink Using a Hashchange Event
+## Lab: DOM XSS in jQuery selector sink using a hashchange event
 
 **Category:** Cross-site scripting  
 **Type:** DOM-based XSS  
@@ -17,127 +17,111 @@ The server may return safe content, but insecure JavaScript logic in the browser
 
 ## What This Lab Is About
 
-This lab demonstrates a DOM-based XSS vulnerability on the **home page**, where:
+This lab demonstrates a DOM-based XSS vulnerability on the home page where:
 
-- The application reads user input from `location.hash`
-- The value is passed directly into a jQuery `$()` selector
-- A `hashchange` event triggers the vulnerable code
-- Malicious HTML is interpreted and executed in the browser
+- jQuery’s `$()` selector is used
+- User-controlled input comes from `location.hash`
+- The input is treated as HTML by jQuery
+- JavaScript executes in the victim’s browser
 
 ---
 
 ## Vulnerable Flow
 
 - **Source:** `location.hash`
-- **Sink:** jQuery `$()` selector
+- **Sink:** `jQuery $()` selector
 
-The application uses jQuery to auto-scroll to a blog post whose title is taken from the URL fragment:
+The application uses logic similar to:
 
-js
+```js
 $(location.hash)
+````
 
-Because jQuery can interpret attacker-controlled input as HTML, this creates a DOM-based XSS vulnerability.
+Because jQuery interprets attacker-controlled input as HTML, this results in a DOM-based XSS vulnerability.
 
 ---
 
 ## Payload Used
- 
-img src=x onerror=print()
+
+```html
+<img src=x onerror=print()>
+```
 
 ---
- 
+
 ## Exploit Delivered
- 
-iframe src="https://YOUR-LAB-ID.web-security-academy.net/#"
-onload="this.src+='<img src=x onerror=print()>'"></iframe
+
+```html
+<iframe src="https://YOUR-LAB-ID.web-security-academy.net/#"
+onload="this.src+='<img src=x onerror=print()>'"></iframe>
+```
 
 ---
 
 ## Steps I Followed
 
-- Inspected the home page JavaScript using browser DevTools
-
-- Identified jQuery $() usage with location.hash
-
-- Opened the Exploit Server from the lab banner
-
-- Created a malicious iframe containing the XSS payload
-
-- Stored the exploit and clicked View exploit
-
-- Confirmed that print() executed in the browser
-
-- Clicked Deliver to victim
-
-- The lab was successfully solved
+1. Inspected the home page JavaScript using browser DevTools
+2. Identified jQuery `$()` usage with `location.hash`
+3. Opened the **Exploit Server** from the lab banner
+4. Created a malicious `<iframe>` containing the payload
+5. Stored the exploit and clicked **View exploit**
+6. Confirmed that `print()` executed in the browser
+7. Delivered the exploit to the victim
+8. Lab was solved successfully
 
 ---
 
 ## Why This Worked
 
-- location.hash is fully user-controlled
-
-- jQuery $() treats crafted input as HTML
-
-- The hashchange event automatically triggers the vulnerable code
-
-- No input validation or sanitization was applied
+* `location.hash` is fully attacker-controlled
+* jQuery `$()` can parse HTML, not just selectors
+* Event handlers like `onerror` allow JavaScript execution
+* No client-side validation or sanitization was applied
 
 ---
 
 ## Impact
 
-- Arbitrary JavaScript execution in the victim’s browser
-
-- Client-side attacks without server-side interaction
-
-- DOM manipulation
-
-- Phishing and UI-based attacks
+* Arbitrary JavaScript execution
+* Session hijacking
+* Credential theft
+* DOM manipulation
+* Client-side phishing attacks
 
 ---
 
 ## Key Lessons Learned
 
-- DOM XSS can occur without form inputs or server reflection
-
-- jQuery selectors are dangerous with untrusted input
-
-- location.hash is a common and overlooked XSS source
-
-- Client-side code must be treated as untrusted
-
-- Exploit servers simulate real-world attack delivery
+* DOM-based XSS does not require server-side reflection
+* jQuery selectors can become dangerous when used with untrusted input
+* URL fragments (`#`) are often overlooked attack vectors
+* Blocking `<script>` tags alone is not enough
+* Client-side code must be treated as untrusted
 
 ---
 
 ## Common Dangerous DOM Sinks
 
-- Avoid using untrusted input with:
+Avoid using untrusted input with:
 
-- jQuery $() selector
+* `innerHTML`
+* `outerHTML`
+* `document.write()`
+* `insertAdjacentHTML()`
+* `jQuery $()`
 
-- innerHTML
-
-- outerHTML
-
-- document.write()
-
-- insertAdjacentHTML()
+---
 
 ## Final Summary
 
-- Vulnerability exists fully on the client side
-
-- Source: location.hash
-
-- Sink: jQuery selector
-
-- Payload delivered via exploit server
-
-- JavaScript executed using an HTML event handler
-
-- High-impact DOM-based XSS vulnerability
-
+* Vulnerability exists entirely on the client side
+* Source: `location.hash`
+* Sink: jQuery selector `$()`
+* Exploit delivered via iframe
+* JavaScript executed using an image error event
+* Simple but high-impact DOM-based XSS
 
  
+
+Just say the word 👌
+```
